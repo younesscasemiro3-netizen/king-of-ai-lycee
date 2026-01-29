@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>👑 King of AI – Aide Lycée Gratuite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#6a0dad,#0f172a);
+  color:white;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  text-align:center;
+  padding:20px;
+  font-size:2em;
+  font-weight:bold;
+  position:relative;
+}
+
+header::after{
+  content:"🌸";
+  position:absolute;
+  top:18px;
+  right:20px;
+}
+
+main{
+  flex:1;
+  max-width:900px;
+  margin:auto;
+  padding:15px;
+}
+
+.intro{
+  background:rgba(255,255,255,0.15);
+  border-radius:16px;
+  padding:15px;
+  text-align:center;
+}
+
+.sections{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-top:10px;
+}
+
+.sections button{
+  border:none;
+  padding:10px 14px;
+  border-radius:18px;
+  background:rgba(255,255,255,0.2);
+  color:white;
+  cursor:pointer;
+}
+
+.chat{
+  margin-top:15px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.msg{
+  max-width:80%;
+  padding:12px 15px;
+  border-radius:15px;
+}
+
+.user{
+  align-self:flex-end;
+  background:rgba(255,255,255,0.15);
+}
+
+.ai{
+  align-self:flex-start;
+  background:linear-gradient(90deg,#9b5de5,#3f37c9);
+}
+
+input, button.send{
+  padding:12px;
+  border:none;
+}
+
+form{
+  display:flex;
+  margin-top:10px;
+}
+
+input{
+  flex:1;
+  border-radius:15px 0 0 15px;
+}
+
+button.send{
+  border-radius:0 15px 15px 0;
+  background:#7c3aed;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  font-size:0.85em;
+  opacity:0.7;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+<header>King of AI – Lycée 🤍</header>
+
+<main>
+<div class="intro">
+<b>Assistant scolaire gratuit</b><br>
+Pour tous les élèves de lycée, sans argent, sans compte.
+<div class="sections">
+<button onclick="ask('math')">📘 Math</button>
+<button onclick="ask('physique')">⚛️ Physique</button>
+<button onclick="ask('svt')">🧪 SVT</button>
+<button onclick="ask('français')">📖 Français</button>
+<button onclick="ask('méthode')">🧠 Méthode</button>
+<button onclick="ask('motivation')">💙 Motivation</button>
+</div>
+</div>
+
+<div class="chat" id="chat"></div>
+
+<form onsubmit="send(event)">
+<input id="q" placeholder="Pose ta question (ex: équation du 2nd degré)" required>
+<button class="send">Envoyer</button>
+</form>
+</main>
+
+<footer>Savoir gratuit • Pour tous • Respect & dignité</footer>
+
+<script>
+const chat=document.getElementById("chat");
+const q=document.getElementById("q");
+
+function add(t,c){
+  const d=document.createElement("div");
+  d.className="msg "+c;
+  d.textContent=t;
+  chat.appendChild(d);
+  chat.scrollTop=chat.scrollHeight;
+}
+
+function ask(s){
+  const map={
+    math:"Explique un cours de math lycée simplement",
+    physique:"Explique la physique comme à un lycéen",
+    svt:"Explique un sujet SVT",
+    français:"Aide en français lycée",
+    méthode:"Comment bien réviser",
+    motivation:"Je suis découragé"
+  };
+  q.value=map[s];
+  send(new Event("submit"));
+}
+
+function reply(x){
+  x=x.toLowerCase();
+  if(x.includes("math")) return "En math lycée : on comprend d'abord, puis on s'entraîne. Dis-moi le chapitre.";
+  if(x.includes("physique")) return "La physique explique la réalité. Quel phénomène veux-tu comprendre ?";
+  if(x.includes("svt")) return "La SVT parle du vivant. Dis-moi le thème.";
+  if(x.includes("français")) return "En français : comprendre le texte, puis analyser simplement.";
+  if(x.includes("réviser")||x.includes("méthode")) return "Méthode simple : comprendre → résumer → répéter.";
+  if(x.includes("découragé")) return "Tu n'es pas faible. Tu apprends. Continue, même lentement.";
+  return "Explique mieux ta question, je suis là pour t'aider 🤍";
+}
+
+function send(e){
+  e.preventDefault();
+  const text=q.value.trim();
+  if(!text)return;
+  q.value="";
+  add(text,"user");
+  setTimeout(()=>add(reply(text),"ai"),400);
+}
+</script>
+</body>
+</html>
