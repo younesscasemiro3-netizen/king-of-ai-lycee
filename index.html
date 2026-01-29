@@ -434,7 +434,7 @@
         // 2. Crée un compte gratuit
         // 3. Va dans "API Keys" → "Create new API key"
         // 4. Copie la clé et colle-la ci-dessous (garde les guillemets)
-        const DEEPSEEK_API_KEY = 'sk-8487d20a1af448d092250a1498bbc7c4'; // À REMPLACER !
+        const DEEPSEEK_API_KEY = 'sk-4039f36aea344c4995a1bf3dc48195fa'; // À REMPLACER !
         const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
         // ============================
@@ -512,7 +512,7 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
         // ============================
         async function callDeepSeekAPI(userMessage) {
             // Vérifier si la clé API est configurée
-            if (DEEPSEEK_API_KEY === 'sk-ton_cle_api_ici') {
+            if (DEEPSEEK_API_KEY === 'sk-4039f36aea344c4995a1bf3dc48195fa') {
                 return `⚠️ <strong>Configuration requise</strong><br><br>
                         Pour utiliser l'IA, tu dois d'abord :<br><br>
                         1. Obtenir une clé API gratuite sur <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a><br>
@@ -711,7 +711,7 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
             userInput.focus();
             
             // Message d'aide si clé API non configurée
-            if (DEEPSEEK_API_KEY === 'sk-ton_cle_api_ici') {
+            if (DEEPSEEK_API_KEY === 'sk-4039f36aea344c4995a1bf3dc48195fa') {
                 setTimeout(() => {
                     addMessage(`🔧 <strong>Première étape : Configuration API</strong><br><br>
                                Pour activer l'IA, tu dois :<br>
