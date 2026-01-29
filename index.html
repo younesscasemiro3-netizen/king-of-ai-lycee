@@ -2,67 +2,727 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>🤖 Assistant Lycée Gratuit – Pour Tous</title>
+    <title>🧠 AI Lycée Gratuit - Assistant Scolaire Intelligent</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Assistant AI gratuit pour élèves de lycée. Pose tes questions en maths, physique, français, histoire, philosophie...">
     <link rel="icon" href="https://emojicdn.elk.sh/📚">
+    <style>
+        /* RESET & BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #f8fafc;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #60a5fa;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto 15px;
+        }
+
+        .api-info {
+            background: rgba(6, 182, 212, 0.2);
+            border-radius: 10px;
+            padding: 8px 15px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        /* INTRO SECTION */
+        .intro {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .intro p {
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .quick-actions button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .quick-actions button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        /* CHAT SECTION */
+        .chat-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .chat-container {
+            min-height: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 85%;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            background: linear-gradient(90deg, #1e40af, #3730a3);
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.ai {
+            background: linear-gradient(90deg, #3730a3, #5b21b6);
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message strong {
+            color: #93c5fd;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            line-height: 1.5;
+        }
+
+        /* INPUT AREA */
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        input[type="text"]:focus {
+            outline: 2px solid #3b82f6;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        input[type="text"]::placeholder {
+            color: #94a3b8;
+        }
+
+        button {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #7c3aed, #6d28d9);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background: linear-gradient(90deg, #6d28d9, #5b21b6);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* TYPING INDICATOR */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-top: 15px;
+            color: #94a3b8;
+            display: none;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* HINT & DISCLAIMER */
+        .hint {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .disclaimer {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            color: #fbbf24;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+
+        footer .small {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .quick-actions button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .message {
+                max-width: 95%;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            input[type="text"] {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* SCROLLBAR */
+        .chat-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+
+        /* LINKS IN MESSAGES */
+        a {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #93c5fd;
+        }
+
+        /* CODE BLOCKS */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #86efac;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🤖 Assistant Lycée Gratuit</h1>
-            <p class="tagline">Pour tous les élèves. Sans argent. Sans compte. Juste de l'aide.</p>
+            <h1>🧠 AI Lycée Gratuit</h1>
+            <p class="tagline">Pose n'importe quelle question scolaire. Je réponds comme un vrai prof.</p>
+            <div class="api-info">🚀 Propulsé par DeepSeek AI • 100% gratuit pour les élèves</div>
         </header>
 
         <main>
             <section class="intro">
-                <p>Pose ta question en français, comme si tu parlais à un prof bienveillant. Je vais te répondre clairement, avec des exemples si besoin.</p>
+                <p><strong>📚 Comment utiliser :</strong><br>
+                1. Écris ta question en français naturel<br>
+                2. L'IA va analyser et te répondre en temps réel<br>
+                3. Tu peux poser des questions dans toutes les matières</p>
+                
                 <div class="quick-actions">
-                    <button onclick="quickQuestion('Comment résoudre une équation du second degré ?')">📘 Maths</button>
-                    <button onclick="quickQuestion('Explique la loi d\'Ohm en physique')">⚛️ Physique</button>
-                    <button onclick="quickQuestion('Comment analyser un texte en français ?')">📖 Français</button>
-                    <button onclick="quickQuestion('Qu\'est-ce que la photosynthèse ?')">🌿 SVT</button>
-                    <button onclick="quickQuestion('Comment bien réviser pour le bac ?')">🧠 Méthode</button>
-                    <button onclick="quickQuestion('Je stresse avant un examen, que faire ?')">💙 Motivation</button>
+                    <button onclick="quickQuestion('Explique la loi des gaz parfaits en physique avec un exemple')">⚛️ Physique</button>
+                    <button onclick="quickQuestion('Comment résoudre une équation du second degré ? Donne un exemple')">📐 Maths</button>
+                    <button onclick="quickQuestion('Quelle est la structure d\'une dissertation en français ?')">📖 Français</button>
+                    <button onclick="quickQuestion('Résume la Révolution française en 5 points clés')">📜 Histoire</button>
+                    <button onclick="quickQuestion('Donne-moi une méthode pour réviser efficacement pour le bac')">🧠 Méthode</button>
                 </div>
             </section>
 
             <section class="chat-section">
                 <div class="chat-container" id="chatContainer">
-                    <!-- Les messages apparaîtront ici -->
                     <div class="message ai">
-                        <strong>Assistant :</strong> Bonjour ! Je suis là pour t'aider dans tes cours de lycée. Pose-moi n'importe quelle question en maths, physique, français, SVT, histoire, philosophie, ou demande des conseils de méthode. Je vais te répondre simplement et clairement. 😊
+                        <strong>Assistant AI :</strong>
+                        <div class="message-content">
+                            Bonjour ! Je suis ton assistant pédagogique IA. Pose-moi n'importe quelle question de lycée :
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Mathématiques (algèbre, géométrie, probabilités...)</li>
+                                <li>Physique-Chimie (mécanique, électricité, chimie...)</li>
+                                <li>Français & Philosophie (analyse, dissertation...)</li>
+                                <li>SVT, Histoire-Géographie</li>
+                                <li>Conseils méthodologiques</li>
+                            </ul>
+                            Je suis là pour t'aider gratuitement. 😊
+                        </div>
                     </div>
                 </div>
 
                 <div class="input-area">
-                    <input type="text" id="userInput" placeholder="Ex : Comment calculer un pourcentage ? Ou : Explique-moi la Révolution française..." autofocus>
-                    <button onclick="sendMessage()">Envoyer</button>
+                    <input type="text" id="userInput" 
+                           placeholder="Ex : Explique-moi la photosynthèse simplement, ou : Comment calculer une dérivée ?" 
+                           autofocus>
+                    <button onclick="sendMessage()" id="sendBtn">Envoyer</button>
                 </div>
-
-                <p class="hint">💡 <em>Tu peux poser ta question en langage naturel, comme tu le ferais avec un ami.</em></p>
+                
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <span>L'IA réfléchit...</span>
+                </div>
+                
+                <p class="hint">💡 <em>Pose ta question naturellement, comme si tu parlais à un professeur patient et bienveillant.</em></p>
             </section>
 
-            <section class="features">
-                <h2>📌 Ce que je peux t'aider à comprendre :</h2>
-                <ul>
-                    <li><strong>Maths</strong> : Algèbre, géométrie, probabilités, fonctions, etc.</li>
-                    <li><strong>Physique-Chimie</strong> : Mécanique, électricité, chimie organique, etc.</li>
-                    <li><strong>Français & Philosophie</strong> : Analyse de texte, méthode de dissertation, notions clés.</li>
-                    <li><strong>SVT & Histoire-Géo</strong> : Biologie, géologie, événements historiques, cartes.</li>
-                    <li><strong>Méthodologie</strong> : Comment réviser, prendre des notes, gérer son temps.</li>
-                    <li><strong>Orientation & Motivation</strong> : Conseils pour le bac, gestion du stress.</li>
-                </ul>
+            <section class="disclaimer">
+                <p><strong>⚠️ Note importante :</strong> Cet outil utilise l'API gratuite de DeepSeek. Les réponses sont générées par une IA avancée. Pour les examens officiels, vérifie toujours avec tes manuels scolaires et professeurs.</p>
             </section>
         </main>
 
         <footer>
-            <p>💝 <strong>Savoir doit être accessible à tous.</strong> Cet outil est gratuit, sans publicité, et restera toujours libre.</p>
-            <p class="small">Développé avec ❤️ pour les élèves de lycée. <a href="#" onclick="showAbout()">En savoir plus</a></p>
+            <p>💝 <strong>Éducation libre et gratuite pour tous les élèves.</strong></p>
+            <p class="small">Développé avec ❤️ pour les lycéens • API DeepSeek • <a href="#" onclick="showAbout()">À propos / Contact</a></p>
         </footer>
     </div>
 
     <!-- Script principal -->
-    <script src="script.js"></script>
+    <script>
+        // ============================
+        // CONFIGURATION DEEPSEEK API
+        // ============================
+        
+        // ⚠️ IMPORTANT : Remplace cette clé par ta propre clé API DeepSeek
+        // 1. Va sur : https://platform.deepseek.com
+        // 2. Crée un compte gratuit
+        // 3. Va dans "API Keys" → "Create new API key"
+        // 4. Copie la clé et colle-la ci-dessous (garde les guillemets)
+        const DEEPSEEK_API_KEY = 'sk-8487d20a1af448d092250a1498bbc7c4'; // À REMPLACER !
+        const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
+
+        // ============================
+        // ÉLÉMENTS DOM
+        // ============================
+        const chatContainer = document.getElementById('chatContainer');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // ============================
+        // HISTORIQUE DE CONVERSATION
+        // ============================
+        let conversationHistory = [
+            {
+                role: "system",
+                content: `Tu es un assistant pédagogique pour lycéens français/marocains. Tu expliques les concepts scolaires de manière claire, simple et détaillée.
+                
+Règles importantes :
+1. Explique toujours avec des exemples concrets
+2. Donne des formules mathématiques quand c'est utile
+3. Structure tes réponses avec des titres et listes
+4. Sois encourageant et patient
+5. Adapte-toi au niveau lycée
+6. Réponds toujours en français
+7. Pour les maths/physique, montre les étapes de calcul
+8. Pour le français/philo, donne des plans et méthodes
+9. Pour l'histoire/SVT, donne des dates/faits importants
+10. Termine souvent par un conseil pratique
+
+Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histoire-Géographie, Anglais, Méthodologie.`
+            }
+        ];
+
+        // ============================
+        // FONCTIONS D'AFFICHAGE
+        // ============================
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            // Formater le texte
+            const formattedText = formatMessage(text);
+            
+            messageDiv.innerHTML = `<strong>${sender === 'user' ? 'Vous' : 'Assistant AI'} :</strong>
+                                   <div class="message-content">${formattedText}</div>`;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function formatMessage(text) {
+            // Formattage markdown simple
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^- (.*$)/gm, '<li>$1</li>')
+                .replace(/(\d+\. .*$)/gm, '<li>$1</li>')
+                .replace(/<\/li>\n<li>/g, '</li><li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                .replace(/\n/g, '<br>')
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
+        }
+
+        function showTyping(show) {
+            typingIndicator.style.display = show ? 'flex' : 'none';
+        }
+
+        // ============================
+        // APPEL À L'API DEEPSEEK
+        // ============================
+        async function callDeepSeekAPI(userMessage) {
+            // Vérifier si la clé API est configurée
+            if (DEEPSEEK_API_KEY === 'sk-ton_cle_api_ici') {
+                return `⚠️ <strong>Configuration requise</strong><br><br>
+                        Pour utiliser l'IA, tu dois d'abord :<br><br>
+                        1. Obtenir une clé API gratuite sur <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a><br>
+                        2. Créer un compte (gratuit)<br>
+                        3. Générer une clé API dans "API Keys"<br>
+                        4. Remplacer la clé dans le code (ligne 209)<br><br>
+                        <em>En attendant, voici un exemple de réponse :</em><br><br>
+                        <strong>Pour ta question :</strong> "${userMessage}"<br><br>
+                        En tant qu'assistant pédagogique, je te conseillerais de :<br>
+                        • Consulter ton manuel scolaire<br>
+                        • Regarder des vidéos explicatives sur YouTube<br>
+                        • Demander à ton professeur<br>
+                        • Faire des exercices pratiques<br><br>
+                        Une fois la clé API configurée, je pourrai te donner une réponse détaillée et personnalisée !`;
+            }
+
+            try {
+                // Ajouter le message utilisateur
+                conversationHistory.push({
+                    role: "user",
+                    content: userMessage
+                });
+
+                const response = await fetch(DEEPSEEK_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: "deepseek-chat",
+                        messages: conversationHistory,
+                        max_tokens: 2000,
+                        temperature: 0.7,
+                        stream: false
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`API Error ${response.status}: ${errorText}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.choices && data.choices[0]) {
+                    const aiResponse = data.choices[0].message.content;
+                    
+                    // Limiter la taille de l'historique pour éviter les problèmes
+                    if (conversationHistory.length > 20) {
+                        conversationHistory = [
+                            conversationHistory[0], // Garde le système
+                            ...conversationHistory.slice(-10) // Garde les 10 derniers messages
+                        ];
+                    }
+                    
+                    conversationHistory.push({
+                        role: "assistant",
+                        content: aiResponse
+                    });
+                    
+                    return aiResponse;
+                } else {
+                    throw new Error('Format de réponse invalide');
+                }
+                
+            } catch (error) {
+                console.error('DeepSeek API Error:', error);
+                
+                // Réponse de secours intelligente
+                const subjects = {
+                    'math': ['équation', 'calcul', 'fonction', 'géométrie', 'probabilité', 'algèbre'],
+                    'physique': ['physique', 'chimie', 'mécanique', 'électricité', 'optique', 'thermo'],
+                    'français': ['français', 'texte', 'dissertation', 'analyse', 'lecture', 'grammaire'],
+                    'svt': ['svt', 'biologie', 'géologie', 'cellule', 'évolution', 'écologie'],
+                    'histoire': ['histoire', 'géographie', 'guerre', 'révolution', 'date', 'carte'],
+                    'philo': ['philosophie', 'philo', 'notion', 'concept', 'morale', 'liberté']
+                };
+
+                let detectedSubject = 'général';
+                const lowerQuestion = userMessage.toLowerCase();
+                
+                for (const [subject, keywords] of Object.entries(subjects)) {
+                    if (keywords.some(keyword => lowerQuestion.includes(keyword))) {
+                        detectedSubject = subject;
+                        break;
+                    }
+                }
+
+                const fallbackResponses = {
+                    'math': `Pour ta question mathématique : <strong>"${userMessage}"</strong><br><br>
+                            En maths, il est important de :<br>
+                            1. Comprendre la théorie derrière le concept<br>
+                            2. Appliquer avec des exercices progressifs<br>
+                            3. Vérifier ses résultats étape par étape<br><br>
+                            <em>Exemple concret :</em> Pour résoudre une équation, isole l'inconnue en appliquant les mêmes opérations des deux côtés.`,
+                    
+                    'physique': `Pour ta question en physique/chimie : <strong>"${userMessage}"</strong><br><br>
+                               En physique, pense toujours aux :<br>
+                               • Unités de mesure<br>
+                               • Formules de base<br>
+                               • Schémas explicatifs<br>
+                               • Applications concrètes<br><br>
+                               <em>Conseil :</em> Fais des schémas pour visualiser le problème.`,
+                    
+                    'français': `Pour ta question en français : <strong>"${userMessage}"</strong><br><br>
+                               En français, la méthodologie est clé :<br>
+                               1. Lecture attentive du texte<br>
+                               2. Repérage des procédés d'écriture<br>
+                               3. Construction d'un plan logique<br>
+                               4. Rédaction avec introduction/développement/conclusion<br><br>
+                               <em>Astuce :</em> Utilise toujours des citations pour appuyer ton analyse.`,
+                    
+                    'général': `Je rencontre une difficulté technique avec l'API DeepSeek.<br><br>
+                              Pour ta question : <strong>"${userMessage}"</strong><br><br>
+                              Je te conseille de :<br>
+                              1. Consulter ton manuel scolaire<br>
+                              2. Chercher sur <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> (gratuit)<br>
+                              3. Regarder des vidéos sur YouTube Éducation<br>
+                              4. Demander à ton professeur<br><br>
+                              <em>Erreur technique :</em> ${error.message}`
+                };
+
+                return fallbackResponses[detectedSubject] || fallbackResponses['général'];
+            }
+        }
+
+        // ============================
+        // GESTION DES MESSAGES
+        // ============================
+        async function sendMessage() {
+            const question = userInput.value.trim();
+            if (!question) return;
+
+            // Désactiver pendant l'envoi
+            sendBtn.disabled = true;
+            userInput.disabled = true;
+            sendBtn.textContent = 'Envoi en cours...';
+            
+            // Afficher le message utilisateur
+            addMessage(question, 'user');
+            userInput.value = '';
+            
+            // Afficher l'indicateur de frappe
+            showTyping(true);
+
+            try {
+                // Appeler l'API
+                const aiResponse = await callDeepSeekAPI(question);
+                
+                // Afficher la réponse
+                addMessage(aiResponse, 'ai');
+                
+            } catch (error) {
+                addMessage(`❌ <strong>Erreur :</strong> ${error.message}<br><br>Vérifie ta connexion internet et réessaie.`, 'ai');
+            } finally {
+                // Réactiver
+                showTyping(false);
+                sendBtn.disabled = false;
+                userInput.disabled = false;
+                sendBtn.textContent = 'Envoyer';
+                userInput.focus();
+            }
+        }
+
+        // ============================
+        // ÉVÉNEMENTS ET UTILITAIRES
+        // ============================
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function quickQuestion(text) {
+            userInput.value = text;
+            sendMessage();
+        }
+
+        function showAbout() {
+            addMessage(`ℹ️ <strong>À propos de cet assistant</strong><br><br>
+                       <strong>🎯 Mission :</strong> Rendre l'aide scolaire accessible à tous les élèves, gratuitement.<br><br>
+                       <strong>🤖 Technologie :</strong> Propulsé par DeepSeek AI, un modèle d'intelligence artificielle avancé.<br><br>
+                       <strong>💰 Coût :</strong> 100% gratuit pour les élèves (limites d'API applicables).<br><br>
+                       <strong>🔒 Confidentialité :</strong> Aucune donnée personnelle stockée. Conversations temporaires.<br><br>
+                       <strong>📚 Contenu :</strong> Optimisé pour les programmes de lycée français/marocain.<br><br>
+                       <strong>🛠️ Pour développeurs :</strong> Code open-source. Clone et adapte pour ta communauté !<br><br>
+                       <em>Besoin d'aide ? Contacte le développeur via GitHub.</em>`, 'ai');
+        }
+
+        // ============================
+        // INITIALISATION
+        // ============================
+        window.onload = () => {
+            userInput.focus();
+            
+            // Message d'aide si clé API non configurée
+            if (DEEPSEEK_API_KEY === 'sk-ton_cle_api_ici') {
+                setTimeout(() => {
+                    addMessage(`🔧 <strong>Première étape : Configuration API</strong><br><br>
+                               Pour activer l'IA, tu dois :<br>
+                               1. Obtenir une clé API gratuite sur <a href="https://platform.deepseek.com" target="_blank">DeepSeek Platform</a><br>
+                               2. Créer un compte gratuit<br>
+                               3. Générer une clé API<br>
+                               4. La coller dans le code (remplacer 'sk-ton_cle_api_ici')<br><br>
+                               <em>En attendant, utilise les boutons de questions rapides pour voir des exemples !</em>`, 'ai');
+                }, 1000);
+            }
+        };
+    </script>
 </body>
 </html>
