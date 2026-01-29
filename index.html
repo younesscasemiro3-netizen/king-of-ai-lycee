@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>🧠 AI Lycée Gratuit - Assistant Scolaire Intelligent</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Assistant AI gratuit pour élèves de lycée. Pose tes questions en maths, physique, français, histoire, philosophie...">
+    <meta name="description" content="Assistant IA gratuit pour élèves de lycée. Pose tes questions en maths, physique, français, histoire, philosophie...">
     <link rel="icon" href="https://emojicdn.elk.sh/📚">
     <style>
         /* RESET & BASE */
@@ -53,13 +53,13 @@
         }
 
         .api-info {
-            background: rgba(6, 182, 212, 0.2);
+            background: rgba(34, 197, 94, 0.2);
             border-radius: 10px;
             padding: 8px 15px;
             display: inline-block;
             font-size: 0.9rem;
-            color: #06b6d4;
-            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
         }
 
         /* INTRO SECTION */
@@ -351,6 +351,12 @@
             font-family: 'Courier New', monospace;
             color: #86efac;
         }
+
+        /* STATUS */
+        .status-connected {
+            color: #22c55e;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -358,7 +364,7 @@
         <header>
             <h1>🧠 AI Lycée Gratuit</h1>
             <p class="tagline">Pose n'importe quelle question scolaire. Je réponds comme un vrai prof.</p>
-            <div class="api-info">🚀 Propulsé par DeepSeek AI • 100% gratuit pour les élèves</div>
+            <div class="api-info">✅ API DeepSeek configurée • Prêt à fonctionner</div>
         </header>
 
         <main>
@@ -413,28 +419,24 @@
             </section>
 
             <section class="disclaimer">
-                <p><strong>⚠️ Note importante :</strong> Cet outil utilise l'API gratuite de DeepSeek. Les réponses sont générées par une IA avancée. Pour les examens officiels, vérifie toujours avec tes manuels scolaires et professeurs.</p>
+                <p><strong>⚠️ Note importante :</strong> Cet outil utilise l'API DeepSeek. Les réponses sont générées par une IA. Pour les examens officiels, vérifie toujours avec tes manuels.</p>
             </section>
         </main>
 
         <footer>
             <p>💝 <strong>Éducation libre et gratuite pour tous les élèves.</strong></p>
-            <p class="small">Développé avec ❤️ pour les lycéens • API DeepSeek • <a href="#" onclick="showAbout()">À propos / Contact</a></p>
+            <p class="small">Développé avec ❤️ pour les lycéens • API DeepSeek • <a href="#" onclick="showAbout()">À propos</a></p>
         </footer>
     </div>
 
-    <!-- Script principal -->
+    <!-- Script principal avec TA CLÉ API intégrée -->
     <script>
         // ============================
         // CONFIGURATION DEEPSEEK API
         // ============================
         
-        // ⚠️ IMPORTANT : Remplace cette clé par ta propre clé API DeepSeek
-        // 1. Va sur : https://platform.deepseek.com
-        // 2. Crée un compte gratuit
-        // 3. Va dans "API Keys" → "Create new API key"
-        // 4. Copie la clé et colle-la ci-dessous (garde les guillemets)
-        const DEEPSEEK_API_KEY = 'sk-4039f36aea344c4995a1bf3dc48195fa'; // À REMPLACER !
+        // ✅ TA CLÉ API DEEPSEEK EST DÉJÀ INTÉGRÉE
+        const DEEPSEEK_API_KEY = 'sk-4039f36aea344c4995a1bf3dc48195fa';
         const DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/chat/completions';
 
         // ============================
@@ -451,21 +453,40 @@
         let conversationHistory = [
             {
                 role: "system",
-                content: `Tu es un assistant pédagogique pour lycéens français/marocains. Tu expliques les concepts scolaires de manière claire, simple et détaillée.
-                
-Règles importantes :
-1. Explique toujours avec des exemples concrets
-2. Donne des formules mathématiques quand c'est utile
-3. Structure tes réponses avec des titres et listes
-4. Sois encourageant et patient
-5. Adapte-toi au niveau lycée
-6. Réponds toujours en français
-7. Pour les maths/physique, montre les étapes de calcul
-8. Pour le français/philo, donne des plans et méthodes
-9. Pour l'histoire/SVT, donne des dates/faits importants
-10. Termine souvent par un conseil pratique
+                content: `Tu es un assistant pédagogique expert pour lycéens français/marocains. 
 
-Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histoire-Géographie, Anglais, Méthodologie.`
+TON RÔLE :
+1. Explique les concepts scolaires de manière CLAIRE, SIMPLE et DÉTAILLÉE
+2. Donne TOUJOURS des EXEMPLES CONCRETS
+3. Structure tes réponses avec des parties bien distinctes
+4. Sois ENCOURAGEANT et PATIENT
+5. Adapte ton langage au niveau lycée (ni trop simple, ni trop complexe)
+
+RÈGLES STRICTES :
+- Réponds TOUJOURS en français
+- Pour les maths/physique : montre TOUTES les étapes de calcul
+- Pour le français/philo : propose TOUJOURS un plan structuré
+- Pour l'histoire/SVT : donne des DATES et FAITS précis
+- Termine souvent par un CONSEIL PRATIQUE ou un EXERCICE
+
+MATIÈRES :
+- Mathématiques (algèbre, géométrie, analyse, probabilités)
+- Physique-Chimie (mécanique, électricité, optique, chimie)
+- SVT (biologie, géologie, écologie, évolution)
+- Français (analyse de texte, dissertation, grammaire)
+- Histoire-Géographie (dates, événements, cartes)
+- Philosophie (concepts, auteurs, argumentation)
+- Méthodologie (révision, prise de notes, gestion du temps)
+
+TON TON :
+- Professionnel mais amical
+- Pédagogue mais pas infantilisant
+- Précis mais accessible
+
+NE JAMAIS :
+- Dire "je ne sais pas" sans proposer une alternative
+- Donner des réponses trop courtes
+- Oublier les exemples`
             }
         ];
 
@@ -486,7 +507,7 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
         }
 
         function formatMessage(text) {
-            // Formattage markdown simple
+            // Formattage markdown amélioré
             return text
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -499,6 +520,7 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
                 .replace(/(\d+\. .*$)/gm, '<li>$1</li>')
                 .replace(/<\/li>\n<li>/g, '</li><li>')
                 .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+                .replace(/\n\n/g, '<br><br>')
                 .replace(/\n/g, '<br>')
                 .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
         }
@@ -511,30 +533,20 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
         // APPEL À L'API DEEPSEEK
         // ============================
         async function callDeepSeekAPI(userMessage) {
-            // Vérifier si la clé API est configurée
-            if (DEEPSEEK_API_KEY === 'sk-4039f36aea344c4995a1bf3dc48195fa') {
-                return `⚠️ <strong>Configuration requise</strong><br><br>
-                        Pour utiliser l'IA, tu dois d'abord :<br><br>
-                        1. Obtenir une clé API gratuite sur <a href="https://platform.deepseek.com" target="_blank">platform.deepseek.com</a><br>
-                        2. Créer un compte (gratuit)<br>
-                        3. Générer une clé API dans "API Keys"<br>
-                        4. Remplacer la clé dans le code (ligne 209)<br><br>
-                        <em>En attendant, voici un exemple de réponse :</em><br><br>
-                        <strong>Pour ta question :</strong> "${userMessage}"<br><br>
-                        En tant qu'assistant pédagogique, je te conseillerais de :<br>
-                        • Consulter ton manuel scolaire<br>
-                        • Regarder des vidéos explicatives sur YouTube<br>
-                        • Demander à ton professeur<br>
-                        • Faire des exercices pratiques<br><br>
-                        Une fois la clé API configurée, je pourrai te donner une réponse détaillée et personnalisée !`;
-            }
-
             try {
                 // Ajouter le message utilisateur
                 conversationHistory.push({
                     role: "user",
                     content: userMessage
                 });
+
+                // Limiter la taille de l'historique pour éviter les tokens excessifs
+                if (conversationHistory.length > 10) {
+                    conversationHistory = [
+                        conversationHistory[0], // Garde le système
+                        ...conversationHistory.slice(-9) // Garde les 9 derniers messages
+                    ];
+                }
 
                 const response = await fetch(DEEPSEEK_API_URL, {
                     method: 'POST',
@@ -553,22 +565,26 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
 
                 if (!response.ok) {
                     const errorText = await response.text();
-                    throw new Error(`API Error ${response.status}: ${errorText}`);
+                    console.error('API Error:', response.status, errorText);
+                    
+                    // Gestion d'erreurs spécifiques
+                    if (response.status === 401) {
+                        throw new Error('Clé API invalide. Vérifie ta clé DeepSeek.');
+                    } else if (response.status === 429) {
+                        throw new Error('Limite de requêtes atteinte. Réessaie dans quelques minutes.');
+                    } else if (response.status === 500) {
+                        throw new Error('Problème serveur DeepSeek. Réessaie plus tard.');
+                    } else {
+                        throw new Error(`Erreur ${response.status}: ${errorText.substring(0, 100)}`);
+                    }
                 }
 
                 const data = await response.json();
                 
-                if (data.choices && data.choices[0]) {
+                if (data.choices && data.choices[0] && data.choices[0].message) {
                     const aiResponse = data.choices[0].message.content;
                     
-                    // Limiter la taille de l'historique pour éviter les problèmes
-                    if (conversationHistory.length > 20) {
-                        conversationHistory = [
-                            conversationHistory[0], // Garde le système
-                            ...conversationHistory.slice(-10) // Garde les 10 derniers messages
-                        ];
-                    }
-                    
+                    // Ajouter la réponse à l'historique
                     conversationHistory.push({
                         role: "assistant",
                         content: aiResponse
@@ -576,67 +592,261 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
                     
                     return aiResponse;
                 } else {
-                    throw new Error('Format de réponse invalide');
+                    throw new Error('Format de réponse invalide de l\'API');
                 }
                 
             } catch (error) {
                 console.error('DeepSeek API Error:', error);
                 
-                // Réponse de secours intelligente
-                const subjects = {
-                    'math': ['équation', 'calcul', 'fonction', 'géométrie', 'probabilité', 'algèbre'],
-                    'physique': ['physique', 'chimie', 'mécanique', 'électricité', 'optique', 'thermo'],
-                    'français': ['français', 'texte', 'dissertation', 'analyse', 'lecture', 'grammaire'],
-                    'svt': ['svt', 'biologie', 'géologie', 'cellule', 'évolution', 'écologie'],
-                    'histoire': ['histoire', 'géographie', 'guerre', 'révolution', 'date', 'carte'],
-                    'philo': ['philosophie', 'philo', 'notion', 'concept', 'morale', 'liberté']
-                };
-
-                let detectedSubject = 'général';
-                const lowerQuestion = userMessage.toLowerCase();
+                // Réponses de secours INTELLIGENTES et DÉTAILLÉES
+                const question = userMessage.toLowerCase();
                 
-                for (const [subject, keywords] of Object.entries(subjects)) {
-                    if (keywords.some(keyword => lowerQuestion.includes(keyword))) {
-                        detectedSubject = subject;
-                        break;
-                    }
+                // Détection précise du sujet
+                if (question.includes('probabilité') || question.includes('statistique') || question.includes('hasard') || question.includes('chance')) {
+                    return `🎲 <strong>COURS COMPLET : LES PROBABILITÉS</strong><br><br>
+
+<strong>1. 📚 DÉFINITION FONDAMENTALE</strong><br>
+Une probabilité est un nombre entre 0 et 1 qui quantifie la chance qu'un événement se réalise.<br>
+• 0 = événement impossible<br>
+• 1 = événement certain<br>
+• 0.5 = événement aussi probable qu'improbable<br><br>
+
+<strong>2. 🔢 FORMULE DE BASE</strong><br>
+Pour un événement A : <code>P(A) = nombre de cas favorables / nombre de cas possibles</code><br><br>
+
+<strong>3. 📊 EXEMPLES CONCRETS</strong><br>
+<strong>Exemple 1 : Lancer un dé équilibré à 6 faces</strong><br>
+• P(obtenir un 3) = 1/6 ≈ 0,1667<br>
+• P(obtenir un nombre pair) = 3/6 = 1/2 = 0,5<br>
+• P(obtenir 7) = 0/6 = 0 (impossible)<br><br>
+
+<strong>Exemple 2 : Tirer une carte d'un jeu de 52 cartes</strong><br>
+• P(as de cœur) = 1/52 ≈ 0,0192<br>
+• P(roi) = 4/52 = 1/13 ≈ 0,0769<br>
+• P(carte rouge) = 26/52 = 1/2 = 0,5<br><br>
+
+<strong>4. 📈 LOIS IMPORTANTES</strong><br>
+<strong>A. Probabilité de l'événement contraire</strong><br>
+<code>P(non A) = 1 - P(A)</code><br>
+Exemple : Si P(pleuvoir) = 0,3, alors P(ne pas pleuvoir) = 1 - 0,3 = 0,7<br><br>
+
+<strong>B. Probabilité de A OU B</strong><br>
+<code>P(A ∪ B) = P(A) + P(B) - P(A ∩ B)</code><br>
+Si A et B sont incompatibles : <code>P(A ∪ B) = P(A) + P(B)</code><br><br>
+
+<strong>C. Probabilité de A ET B (indépendants)</strong><br>
+<code>P(A ∩ B) = P(A) × P(B)</code><br>
+Exemple : P(pile au 1er lancer ET pile au 2ème) = 0,5 × 0,5 = 0,25<br><br>
+
+<strong>5. 🎯 CONSEILS PRATIQUES</strong><br>
+1. <strong>Dessine un arbre</strong> pour les expériences à plusieurs étapes<br>
+2. <strong>Liste tous les cas possibles</strong> pour les petits univers<br>
+3. <strong>Vérifie l'indépendance</strong> avant de multiplier les probabilités<br>
+4. <strong>Pense aux contraires</strong> quand "au moins un" est demandé<br><br>
+
+<strong>6. 📝 EXERCICE TYPE BAC</strong><br>
+<em>Une urne contient 5 boules rouges, 3 vertes et 2 bleues. On tire une boule au hasard.</em><br>
+a) P(rouge) = 5/10 = 0,5<br>
+b) P(non verte) = 1 - P(verte) = 1 - 3/10 = 0,7<br>
+c) P(rouge ou bleue) = (5+2)/10 = 7/10 = 0,7<br><br>
+
+<strong>💡 ASTUE FINALE :</strong> En probabilités, la pratique est essentielle. Commence par des exercices simples avec dés, pièces et urnes avant de passer aux problèmes complexes.`;
+
+                } else if (question.includes('photosynthèse') || question.includes('chlorophylle') || (question.includes('plante') && question.includes('énergie'))) {
+                    return `🌿 <strong>COURS COMPLET : LA PHOTOSYNTHÈSE</strong><br><br>
+
+<strong>1. 🌞 DÉFINITION GÉNÉRALE</strong><br>
+La photosynthèse est le processus par lequel les plantes, les algues et certaines bactéries transforment l'énergie lumineuse en énergie chimique.<br><br>
+
+<strong>2. 📜 ÉQUATION BILAN GÉNÉRALE</strong><br>
+<code>6 CO₂ + 6 H₂O + énergie lumineuse → C₆H₁₂O₆ (glucose) + 6 O₂</code><br><br>
+
+<strong>3. 🏭 ORGANITES IMPLIQUÉS</strong><br>
+<strong>Les chloroplastes</strong> : Organites spécifiques aux cellules végétales contenant :<br>
+• <strong>La chlorophylle</strong> : pigment vert qui capture la lumière<br>
+• <strong>Les thylakoïdes</strong> : sacs membranes où a lieu la phase claire<br>
+• <strong>Le stroma</strong> : liquide où a lieu la phase sombre<br><br>
+
+<strong>4. 🔄 LES DEUX PHASES DE LA PHOTOSYNTHÈSE</strong><br>
+
+<strong>A. PHASE CLAIRE (photochimique)</strong><br>
+<strong>Lieu :</strong> Membrane des thylakoïdes<br>
+<strong>Énergie :</strong> Lumière nécessaire<br>
+<strong>Processus :</strong><br>
+1. Absorption de lumière par la chlorophylle<br>
+2. Photolyse de l'eau : H₂O → 2H⁺ + 2e⁻ + ½O₂<br>
+3. Production d'ATP et de NADPH<br>
+<strong>Produits :</strong> ATP, NADPH, O₂ (déchet)<br><br>
+
+<strong>B. PHASE SOMBRE (cycle de Calvin)</strong><br>
+<strong>Lieu :</strong> Stroma du chloroplaste<br>
+<strong>Énergie :</strong> ATP et NADPH de la phase claire<br>
+<strong>Processus :</strong><br>
+1. Fixation du CO₂ sur le RuBP (ribulose-1,5-bisphosphate)<br>
+2. Réduction en sucre (utilisation de l'ATP et NADPH)<br>
+3. Régénération du RuBP<br>
+<strong>Produit :</strong> Glucose (C₆H₁₂O₆)<br><br>
+
+<strong>5. 📊 FACTEURS INFLUENÇANT LA PHOTOSYNTHÈSE</strong><br>
+<strong>A. Facteurs abiotiques :</strong><br>
+• <strong>Lumière</strong> : Augmente jusqu'à un plateau<br>
+• <strong>CO₂</strong> : Limite souvent le processus<br>
+• <strong>Température</strong> : Optimum entre 20-30°C<br>
+• <strong>Eau</strong> : Nécessaire mais excès nuit<br><br>
+
+<strong>B. Facteurs biotiques :</strong><br>
+• Surface foliaire<br>
+• Concentration en chlorophylle<br>
+• Âge de la feuille<br><br>
+
+<strong>6. 🌍 IMPORTANCE ÉCOLOGIQUE</strong><br>
+<strong>A. Pour les plantes :</strong><br>
+• Production de matière organique (biomasse)<br>
+• Source d'énergie pour la croissance<br><br>
+
+<strong>B. Pour la planète :</strong><br>
+• <strong>Production d'oxygène</strong> (21% de l'atmosphère)<br>
+• <strong>Piégeage du CO₂</strong> (lutte contre l'effet de serre)<br>
+• <strong>Base des chaînes alimentaires</strong><br><br>
+
+<strong>7. 🧪 EXPÉRIENCE DÉMONSTRATIVE</strong><br>
+<em>Expérience d'Ingenhousz (1779) :</em><br>
+1. Placer une plante aquatique (Elodée) sous un entonnoir<br>
+2. Récupérer les bulles d'O₂ produites<br>
+3. Montrer que la production est plus forte à la lumière<br><br>
+
+<strong>8. 📚 VOCABULAIRE CLÉ</strong><br>
+• <strong>Autotrophe</strong> : organisme produisant sa propre matière organique<br>
+• <strong>Hétérotrophe</strong> : organisme consommant la matière organique d'autres êtres<br>
+• <strong>Producteur primaire</strong> : premier maillon de la chaîne alimentaire<br><br>
+
+<strong>9. 🎯 CONSEILS POUR RÉVISER</strong><br>
+1. <strong>Dessine le chloroplaste</strong> avec ses composants<br>
+2. <strong>Mémorise l'équation bilan</strong> et ses interprétations<br>
+3. <strong>Comprends le lien</strong> entre phase claire et phase sombre<br>
+4. <strong>Relie aux enjeux actuels</strong> (réchauffement climatique, déforestation)<br><br>
+
+<strong>💡 LE SAVIEZ-VOUS ?</strong> Environ 50% de l'oxygène terrestre est produit par le phytoplancton marin, pas par les arbres !`;
+
+                } else if (question.includes('équation') && question.includes('second degré')) {
+                    return `📐 <strong>COURS COMPLET : ÉQUATIONS DU SECOND DEGRÉ</strong><br><br>
+
+<strong>1. 📝 FORME GÉNÉRALE</strong><br>
+<code>ax² + bx + c = 0</code> avec a ≠ 0<br>
+• a, b, c sont des coefficients réels<br>
+• x est l'inconnue<br><br>
+
+<strong>2. 🎯 DISCRIMINANT (Δ)</strong><br>
+<code>Δ = b² - 4ac</code><br>
+C'est la quantité qui détermine le nombre et la nature des solutions.<br><br>
+
+<strong>3. 🔢 RACINES EN FONCTION DE Δ</strong><br>
+
+<strong>Cas 1 : Δ > 0 (deux solutions réelles distinctes)</strong><br>
+<code>x₁ = (-b - √Δ) / (2a)</code><br>
+<code>x₂ = (-b + √Δ) / (2a)</code><br>
+<em>Exemple :</em> x² - 5x + 6 = 0 → Δ = 1 → x₁ = 2, x₂ = 3<br><br>
+
+<strong>Cas 2 : Δ = 0 (une solution double)</strong><br>
+<code>x₀ = -b / (2a)</code><br>
+<em>Exemple :</em> x² - 4x + 4 = 0 → Δ = 0 → x₀ = 2<br><br>
+
+<strong>Cas 3 : Δ < 0 (deux solutions complexes conjuguées)</strong><br>
+<code>x₁ = (-b - i√|Δ|) / (2a)</code><br>
+<code>x₂ = (-b + i√|Δ|) / (2a)</code><br>
+<em>Exemple :</em> x² + 2x + 5 = 0 → Δ = -16 → x₁ = -1 - 2i, x₂ = -1 + 2i<br><br>
+
+<strong>4. 📈 PROPRIÉTÉS DES RACINES (relations de Viète)</strong><br>
+Si x₁ et x₂ sont les racines :<br>
+<code>Somme : x₁ + x₂ = -b/a</code><br>
+<code>Produit : x₁ × x₂ = c/a</code><br><br>
+
+<strong>5. 🎨 INTERPRÉTATION GRAPHIQUE</strong><br>
+La courbe <code>y = ax² + bx + c</code> est une parabole :<br>
+• Si a > 0 : parabole tournée vers le haut (forme ∪)<br>
+• Si a < 0 : parabole tournée vers le bas (forme ∩)<br>
+• Les racines sont les points d'intersection avec l'axe des x<br><br>
+
+<strong>6. 📚 EXEMPLE COMPLET PAS À PAS</strong><br>
+<strong>Résoudre : 2x² - 8x + 6 = 0</strong><br>
+1. Identifier : a = 2, b = -8, c = 6<br>
+2. Calculer Δ : Δ = (-8)² - 4×2×6 = 64 - 48 = <strong>16</strong><br>
+3. Δ > 0 → deux solutions réelles<br>
+4. Calculer : √Δ = √16 = 4<br>
+5. Solutions :<br>
+   x₁ = (8 - 4) / (2×2) = 4 / 4 = <strong>1</strong><br>
+   x₂ = (8 + 4) / (2×2) = 12 / 4 = <strong>3</strong><br>
+6. Vérification :<br>
+   2×(1)² - 8×1 + 6 = 2 - 8 + 6 = 0 ✓<br>
+   2×(3)² - 8×3 + 6 = 18 - 24 + 6 = 0 ✓<br><br>
+
+<strong>7. 🧩 CAS PARTICULIERS</strong><br>
+<strong>A. Équation incomplète (b = 0) :</strong> ax² + c = 0<br>
+Solution : x = ±√(-c/a) si -c/a ≥ 0<br><br>
+
+<strong>B. Équation incomplète (c = 0) :</strong> ax² + bx = 0<br>
+Solution : x(ax + b) = 0 → x = 0 ou x = -b/a<br><br>
+
+<strong>8. 🎯 MÉTHODE DE RÉSOLUTION (6 étapes)</strong><br>
+1. Vérifier que a ≠ 0<br>
+2. Calculer Δ = b² - 4ac<br>
+3. Déterminer le signe de Δ<br>
+4. Appliquer la formule appropriée<br>
+5. Simplifier les solutions<br>
+6. Vérifier en remplaçant dans l'équation initiale<br><br>
+
+<strong>9. 💡 CONSEILS PRATIQUES</strong><br>
+1. <strong>Toujours vérifier</strong> les solutions<br>
+2. <strong>Attention aux signes</strong> (-b peut être positif si b est négatif)<br>
+3. <strong>Simplifier les fractions</strong> pour la forme finale<br>
+4. <strong>Pour Δ < 0</strong>, bien écrire sous forme a ± bi<br><br>
+
+<strong>10. 📝 EXERCICE TYPE BAC</strong><br>
+<em>Résoudre et discuter selon m : mx² + (m+1)x + 1 = 0</em><br>
+1. Si m = 0 : équation du premier degré x + 1 = 0 → x = -1<br>
+2. Si m ≠ 0 : Δ = (m+1)² - 4m = m² + 2m + 1 - 4m = m² - 2m + 1 = (m-1)²<br>
+   • Δ ≥ 0 toujours<br>
+   • Si m = 1 : solution double x₀ = -(m+1)/(2m) = -2/2 = -1<br>
+   • Si m ≠ 1 : deux solutions distinctes<br><br>
+
+<strong>🧠 POUR ALLER PLUS LOIN :</strong> Les équations du second degré sont fondamentales en physique (mouvement uniformément accéléré), en économie (optimisation), et en informatique (courbes de Bézier).`;
+
+                } else {
+                    // Réponse générique intelligente
+                    return `🤔 <strong>JE VOIS QUE TU DEMANDES :</strong> "${userMessage}"<br><br>
+
+<strong>🔍 MON ANALYSE :</strong><br>
+Je détecte que tu cherches des informations sur un sujet scolaire. Malheureusement, je rencontre une difficulté temporaire avec l'API DeepSeek.<br><br>
+
+<strong>🎯 POUR T'AIDER IMMÉDIATEMENT :</strong><br>
+
+<strong>1. 📚 RESSOURCES GRATUITES EN LIGNE :</strong><br>
+• <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> - Cours vidéo gratuits<br>
+• <a href="https://www.lesbonsprofs.com" target="_blank">Les Bons Profs</a> - Spécialisé pour le bac<br>
+• <a href="https://www.annabac.com" target="_blank">Annabac</a> - Annales corrigées<br><br>
+
+<strong>2. 🧠 MÉTHODE POUR TON SUJET :</strong><br>
+1. <strong>Identifier</strong> le chapitre concerné dans ton manuel<br>
+2. <strong>Lire</strong> la leçon en surlignant les mots-clés<br>
+3. <strong>Ficher</strong> avec définitions, formules, exemples<br>
+4. <strong>S'entraîner</strong> avec des exercices progressifs<br>
+5. <strong>Demander</strong> à ton professeur les points difficiles<br><br>
+
+<strong>3. 💡 CONSEIL SPÉCIFIQUE :</strong><br>
+Pour "${userMessage}", je te recommande de :<br>
+• Chercher des <strong>vidéos explicatives</strong> sur YouTube<br>
+• Trouver des <strong>exercices corrigés</strong> en ligne<br>
+• Utiliser des <strong>applications éducatives</strong> comme Quizlet<br><br>
+
+<strong>⚠️ NOTE TECHNIQUE :</strong><br>
+L'API DeepSeek rencontre actuellement des difficultés. Réessaie dans quelques minutes ou contacte-moi pour une solution alternative.<br><br>
+
+<strong>En attendant, n'hésite pas à :</strong><br>
+1. Poser une autre question<br>
+2. Utiliser les boutons de questions rapides ci-dessus<br>
+3. Explorer les ressources gratuites que j'ai mentionnées`;
+
                 }
-
-                const fallbackResponses = {
-                    'math': `Pour ta question mathématique : <strong>"${userMessage}"</strong><br><br>
-                            En maths, il est important de :<br>
-                            1. Comprendre la théorie derrière le concept<br>
-                            2. Appliquer avec des exercices progressifs<br>
-                            3. Vérifier ses résultats étape par étape<br><br>
-                            <em>Exemple concret :</em> Pour résoudre une équation, isole l'inconnue en appliquant les mêmes opérations des deux côtés.`,
-                    
-                    'physique': `Pour ta question en physique/chimie : <strong>"${userMessage}"</strong><br><br>
-                               En physique, pense toujours aux :<br>
-                               • Unités de mesure<br>
-                               • Formules de base<br>
-                               • Schémas explicatifs<br>
-                               • Applications concrètes<br><br>
-                               <em>Conseil :</em> Fais des schémas pour visualiser le problème.`,
-                    
-                    'français': `Pour ta question en français : <strong>"${userMessage}"</strong><br><br>
-                               En français, la méthodologie est clé :<br>
-                               1. Lecture attentive du texte<br>
-                               2. Repérage des procédés d'écriture<br>
-                               3. Construction d'un plan logique<br>
-                               4. Rédaction avec introduction/développement/conclusion<br><br>
-                               <em>Astuce :</em> Utilise toujours des citations pour appuyer ton analyse.`,
-                    
-                    'général': `Je rencontre une difficulté technique avec l'API DeepSeek.<br><br>
-                              Pour ta question : <strong>"${userMessage}"</strong><br><br>
-                              Je te conseille de :<br>
-                              1. Consulter ton manuel scolaire<br>
-                              2. Chercher sur <a href="https://www.khanacademy.org" target="_blank">Khan Academy</a> (gratuit)<br>
-                              3. Regarder des vidéos sur YouTube Éducation<br>
-                              4. Demander à ton professeur<br><br>
-                              <em>Erreur technique :</em> ${error.message}`
-                };
-
-                return fallbackResponses[detectedSubject] || fallbackResponses['général'];
             }
         }
 
@@ -650,7 +860,7 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
             // Désactiver pendant l'envoi
             sendBtn.disabled = true;
             userInput.disabled = true;
-            sendBtn.textContent = 'Envoi en cours...';
+            sendBtn.textContent = 'Envoi...';
             
             // Afficher le message utilisateur
             addMessage(question, 'user');
@@ -667,7 +877,30 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
                 addMessage(aiResponse, 'ai');
                 
             } catch (error) {
-                addMessage(`❌ <strong>Erreur :</strong> ${error.message}<br><br>Vérifie ta connexion internet et réessaie.`, 'ai');
+                // Message d'erreur utilisateur-friendly
+                let errorMessage = `❌ <strong>Erreur technique :</strong> ${error.message}<br><br>`;
+                
+                if (error.message.includes('Clé API')) {
+                    errorMessage += `Vérifie ta clé API DeepSeek. Elle devrait commencer par "sk-".`;
+                } else if (error.message.includes('Limite')) {
+                    errorMessage += `Limite d'utilisation atteinte. Réessaie dans 1 heure ou utilise les réponses de secours ci-dessous.`;
+                } else {
+                    errorMessage += `Problème de connexion. Vérifie ton internet ou réessaie plus tard.`;
+                }
+                
+                errorMessage += `<br><br><strong>En attendant, voici une aide sur ton sujet :</strong><br>`;
+                
+                // Ajouter une aide basique selon le sujet
+                const q = question.toLowerCase();
+                if (q.includes('math') || q.includes('calcul')) {
+                    errorMessage += `Pour les maths, commence par comprendre les formules de base puis fais des exercices progressifs.`;
+                } else if (q.includes('français')) {
+                    errorMessage += `En français, structure toujours tes réponses : introduction, développement, conclusion.`;
+                } else {
+                    errorMessage += `Consulte ton manuel scolaire ou demande à ton professeur.`;
+                }
+                
+                addMessage(errorMessage, 'ai');
             } finally {
                 // Réactiver
                 showTyping(false);
@@ -694,14 +927,39 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
         }
 
         function showAbout() {
-            addMessage(`ℹ️ <strong>À propos de cet assistant</strong><br><br>
-                       <strong>🎯 Mission :</strong> Rendre l'aide scolaire accessible à tous les élèves, gratuitement.<br><br>
-                       <strong>🤖 Technologie :</strong> Propulsé par DeepSeek AI, un modèle d'intelligence artificielle avancé.<br><br>
-                       <strong>💰 Coût :</strong> 100% gratuit pour les élèves (limites d'API applicables).<br><br>
-                       <strong>🔒 Confidentialité :</strong> Aucune donnée personnelle stockée. Conversations temporaires.<br><br>
-                       <strong>📚 Contenu :</strong> Optimisé pour les programmes de lycée français/marocain.<br><br>
-                       <strong>🛠️ Pour développeurs :</strong> Code open-source. Clone et adapte pour ta communauté !<br><br>
-                       <em>Besoin d'aide ? Contacte le développeur via GitHub.</em>`, 'ai');
+            addMessage(`ℹ️ <strong>À PROPOS DE CET ASSISTANT</strong><br><br>
+
+<strong>🎯 NOTRE MISSION</strong><br>
+Rendre l'aide scolaire accessible à TOUS les élèves, gratuitement, sans conditions.<br><br>
+
+<strong>🤖 TECHNOLOGIE</strong><br>
+• Propulsé par <strong>DeepSeek AI</strong> (modèle avancé)<br>
+• Développé en <strong>HTML/CSS/JavaScript</strong> pur<br>
+• Hébergé sur <strong>GitHub Pages</strong> (gratuit)<br><br>
+
+<strong>💰 COÛT</strong><br>
+• <strong>100% gratuit</strong> pour les élèves<br>
+• Pas d'abonnement<br>
+• Pas de publicité<br>
+• Pas de collecte de données<br><br>
+
+<strong>📚 MATIÈRES COUVERTES</strong><br>
+• Mathématiques • Physique-Chimie • SVT<br>
+• Français • Histoire-Géo • Philosophie<br>
+• Anglais • Méthodologie • Orientation<br><br>
+
+<strong>👨‍💻 POUR LES DÉVELOPPEURS</strong><br>
+• Code open-source<br>
+• Clone et adapte pour ta communauté<br>
+• Contribue sur GitHub<br><br>
+
+<strong>💝 NOTRE ENGAGEMENT</strong><br>
+"Le savoir ne vaut que s'il est partagé."<br>
+Nous croyons en une éducation libre, gratuite et accessible à tous.<br><br>
+
+<strong>📞 CONTACT</strong><br>
+Problèmes techniques ? Suggestions ?<br>
+Ouvre une issue sur le dépôt GitHub.`, 'ai');
         }
 
         // ============================
@@ -710,17 +968,11 @@ Matières couvertes : Maths, Physique-Chimie, SVT, Français, Philosophie, Histo
         window.onload = () => {
             userInput.focus();
             
-            // Message d'aide si clé API non configurée
-            if (DEEPSEEK_API_KEY === 'sk-4039f36aea344c4995a1bf3dc48195fa') {
-                setTimeout(() => {
-                    addMessage(`🔧 <strong>Première étape : Configuration API</strong><br><br>
-                               Pour activer l'IA, tu dois :<br>
-                               1. Obtenir une clé API gratuite sur <a href="https://platform.deepseek.com" target="_blank">DeepSeek Platform</a><br>
-                               2. Créer un compte gratuit<br>
-                               3. Générer une clé API<br>
-                               4. La coller dans le code (remplacer 'sk-ton_cle_api_ici')<br><br>
-                               <em>En attendant, utilise les boutons de questions rapides pour voir des exemples !</em>`, 'ai');
-                }, 1000);
+            // Vérifier si la clé API est valide
+            if (DEEPSEEK_API_KEY && DEEPSEEK_API_KEY.startsWith('sk-') && DEEPSEEK_API_KEY.length > 30) {
+                console.log('✅ Clé API DeepSeek configurée');
+            } else {
+                console.warn('⚠️ Clé API DeepSeek peut être invalide');
             }
         };
     </script>
